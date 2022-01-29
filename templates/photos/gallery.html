@@ -16,7 +16,7 @@
 </head>
 
 <body class="m-5">
-
+    {%include 'partials/__messages.html'%}
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -26,6 +26,9 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">All</li>
+                        {% for name in category %}
+                        <li class="list-group-item">{{name}}</li>
+                        {% endfor %}
                         <a href="{% url 'add' %}" class="btn btn-dark btn-sm m-1">Add Photo</a>
 
                     </ul>
@@ -33,51 +36,27 @@
             </div>
             <div class="col-md-9">
                 <div class="row">
+                    {% for imag in photos %}
                     <div class="col-md-4">
                         <div class="card my-2">
-                            <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
-                                class="image-thumbnail" alt="...">
+                            <img src="{{imag.image.url}}" class="image-thumbnail" alt="...">
                             <div class="card-body">
-                                <small class="card-text">Category:Nature</small>
+                                <small class="card-text">Category:{{imag.category}}</small>
                             </div>
-                            <a href="{% url 'photo' 1 %}" class="btn btn-outline-dark btn-sm m-1">View</a>
+                            <a href="{% url 'photo' imag.id %}" class="btn btn-outline-dark btn-sm m-1">View</a>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card my-2">
-                            <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
-                                class="image-thumbnail" alt="...">
-                            <div class="card-body">
-                                <small class="card-text">Category:Nature</small>
-                            </div>
-                            <a class="btn btn-outline-dark btn-sm m-1">View</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card my-2">
-                            <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
-                                class="image-thumbnail" alt="...">
-                            <div class="card-body">
-                                <small class="card-text">Category:Nature</small>
-                            </div>
-                            <a class="btn btn-outline-dark btn-sm m-1">View</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card my-2">
-                            <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
-                                class="image-thumbnail" alt="...">
-                            <div class="card-body">
-                                <small class="card-text">Category:Nature</small>
-                            </div>
-                            <a class="btn btn-outline-dark btn-sm m-1">View</a>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
 
 </body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 
 </html>

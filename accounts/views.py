@@ -1,12 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, auth
 from django.contrib import messages
 # Create your views here.
 
 
 class RegisterView(View):
     def get(self, request):
+        auth.logout(request)
         return render(request, "accounts/register.html")
 
     def post(self, request):
@@ -31,4 +32,20 @@ class RegisterView(View):
 
 class LoginView(View):
     def get(self, request):
+        auth.logout(request)
         return render(request, "accounts/login.html")
+
+    def post(self, request):
+        username = request.POST['username']
+        passwaord = request.POST['password']
+
+        user = auth.authenticate(username=username, password=passwaord)
+
+        if user:
+            auth.login(request, user)
+            messages.success(request, 'Welcome ' +
+                             user.username+' you are now logged in')
+            return redirect('gallery')
+
+        messages.error(request, 'Inavlid credentials')
+        return render(request, 'accounts/login.html')

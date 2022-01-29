@@ -16,9 +16,8 @@
                 <div class="col">
                     <a href="{% url 'gallery' %}" class="btn btn-dark my-3">Go Back</a>
                     <div style="height: 75vh;">
-                        <img style="max-width: 100%; max-height: 100%;"
-                            src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" alt="">
-                        <p>davsrvq kecqeplccowmcowlcom d[lcmo[epqmoe</p>
+                        <img style="max-width: 100%; max-height: 100%;" src="{{photos.image.url}}" alt="">
+                        <p>{{photos.description}}</p>
                     </div>
                 </div>
             </div>
