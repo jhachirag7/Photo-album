@@ -15,6 +15,7 @@
             <div class="row justify-content-center">
                 <div class="col">
                     <a href="{% url 'gallery' %}" class="btn btn-dark my-3">Go Back</a>
+                    <a href="{% url 'delete' id %}" class="btn btn-dark my-3" style="float: right;">Delete</a>
                     <div style="height: 75vh;">
                         <img style="max-width: 100%; max-height: 100%;" src="{{photos.image.url}}" alt="">
                         <p>{{photos.description}}</p>

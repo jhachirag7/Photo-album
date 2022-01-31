@@ -17,6 +17,9 @@
 
 <body class="m-5">
     {%include 'partials/__messages.html'%}
+    <a href="{% url 'logout' %}" class="btn btn-dark btn-sm m-1" style="float: right;">LogOut</a>
+    <br>
+    <br>
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -25,9 +28,13 @@
                         Categories
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">All</li>
+                        <a href="{% url 'gallery' %}">
+                            <li class="list-group-item">All</li>
+                        </a>
                         {% for name in category %}
-                        <li class="list-group-item">{{name}}</li>
+                        <a href="{% url 'filter' name.id %}">
+                            <li class="list-group-item">{{name.name}}</li>
+                        </a>
                         {% endfor %}
                         <a href="{% url 'add' %}" class="btn btn-dark btn-sm m-1">Add Photo</a>
 
